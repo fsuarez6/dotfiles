@@ -33,13 +33,6 @@ alias up4='up3 && up'
 alias cd_catkin='cd ~/catkin_ws/src'
 alias killgazebo="killall -9 gazebo & killall -9 gzserver  & killall -9 gzclient"
 
-# Do catkin_make from any directory
-alias roscat="cd ~/catkin_ws && catkin_make && cd -"
-# ROS Source
-source ~/catkin_ws/devel/setup.bash
-# Baxter
-alias baxter_shell="cd ~/catkin_ws && . baxter.sh && cd -"
-
 # Tesis
 PHD_THESIS_PATH=~/git/phd-thesis
 function phd_labels() {
@@ -51,3 +44,12 @@ function phd_log() {
   grep -rn 'LaTeX Warning:' $LOG_FILE;
   grep -rn '! ' $LOG_FILE; }
 alias phd_build='cd $PHD_THESIS_PATH && scons -Q && cd -'
+
+# Baxter
+alias baxter_shell="cd ~/catkin_ws && . baxter.sh && cd -"
+
+# ROS Staff
+EDITOR=geany
+alias roscat="cd ~/catkin_ws && catkin_make && cd -"
+source ~/catkin_ws/devel/setup.bash
+#~ source ~/hr2_ws/devel/setup.bash
