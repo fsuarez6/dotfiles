@@ -45,6 +45,18 @@ function phd_log() {
   grep -rn '! ' $LOG_FILE; }
 alias phd_build='cd $PHD_THESIS_PATH && scons -Q && cd -'
 
+# Journal
+JOURNAL_PATH=~/git/kinematics-journal
+function journal_labels() {
+  find $JOURNAL_PATH \( -path $JOURNAL_PATH/doc -prune -o -name '*.tex' \) -exec grep -oPnH '(?<=\\label\{)(.*?)(?=\})' {} \; | sort; }
+function journal_cites() {
+  find $JOURNAL_PATH \( -path $JOURNAL_PATH/doc -prune -o -name '*.tex' \) -exec grep -oPnH '(?<=\\cite\{)(.*?)(?=\})' {} \; | sort; }
+function journal_log() {
+  LOG_FILE=$JOURNAL_PATH/paper.log
+  grep -rn 'LaTeX Warning:' $LOG_FILE;
+  grep -rn '! ' $LOG_FILE; }
+alias journal_build='cd $JOURNAL_PATH && scons -Q && cd -'
+
 # Baxter
 alias baxter_shell="cd ~/catkin_ws && . baxter.sh && cd -"
 
