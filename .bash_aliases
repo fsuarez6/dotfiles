@@ -33,29 +33,29 @@ alias up4='up3 && up'
 alias cd_catkin='cd ~/catkin_ws/src'
 alias killgazebo="killall -9 gazebo & killall -9 gzserver  & killall -9 gzclient"
 
-# Tesis
-PHD_THESIS_PATH=~/git/phd-thesis
+# LaTeX Thesis
+THESIS_PATH=~/git/phd-thesis
 function phd_labels() {
-  find $PHD_THESIS_PATH -exec grep -oP '(?<=\\label\{)(.*?)(?=\})' {} \; | sort; }
+  find $THESIS_PATH \( -path $THESIS_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\label\{)(.*?)(?=\})'; }
 function phd_cites() {
-  find $PHD_THESIS_PATH -exec grep -oP '(?<=\\cite\{)(.*?)(?=\})' {} \; | sort; }
+  find $THESIS_PATH \( -path $THESIS_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\cite\{)(.*?)(?=\})'; }
 function phd_log() {
-  LOG_FILE=$PHD_THESIS_PATH/thesis.log
+  LOG_FILE=$THESIS_PATH/thesis.log
   grep -rn 'LaTeX Warning:' $LOG_FILE;
   grep -rn '! ' $LOG_FILE; }
-alias phd_build='cd $PHD_THESIS_PATH && scons -Q && cd -'
+alias phd_build='cd $THESIS_PATH && scons -Q && cd -'
 
-# Journal
-JOURNAL_PATH=~/git/kinematics-journal
-function journal_labels() {
-  find $JOURNAL_PATH \( -path $JOURNAL_PATH/doc -prune -o -name '*.tex' \) -exec grep -oPnH '(?<=\\label\{)(.*?)(?=\})' {} \; | sort; }
-function journal_cites() {
-  find $JOURNAL_PATH \( -path $JOURNAL_PATH/doc -prune -o -name '*.tex' \) -exec grep -oPnH '(?<=\\cite\{)(.*?)(?=\})' {} \; | sort; }
-function journal_log() {
-  LOG_FILE=$JOURNAL_PATH/paper.log
+# LaTeX paper
+PAPER_PATH=~/git/kinematics-journal
+function paper_labels() {
+  find $PAPER_PATH \( -path $PAPER_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\label\{)(.*?)(?=\})'; }
+function paper_cites() {
+  find $PAPER_PATH \( -path $PAPER_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\cite\{)(.*?)(?=\})'; }
+function paper_log() {
+  LOG_FILE=$PAPER_PATH/paper.log
   grep -rn 'LaTeX Warning:' $LOG_FILE;
   grep -rn '! ' $LOG_FILE; }
-alias journal_build='cd $JOURNAL_PATH && scons -Q && cd -'
+alias journal_build='cd $PAPER_PATH && scons -Q && cd -'
 
 # Baxter
 alias baxter_shell="cd ~/catkin_ws && . baxter.sh && cd -"
