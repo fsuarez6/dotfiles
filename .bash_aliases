@@ -55,10 +55,13 @@ function paper_log() {
   LOG_FILE=$PAPER_PATH/paper.log
   grep -rn 'LaTeX Warning:' $LOG_FILE;
   grep -rn '! ' $LOG_FILE; }
-alias journal_build='cd $PAPER_PATH && scons -Q && cd -'
+alias paper_build='cd $PAPER_PATH && scons -Q && cd -'
+alias paper_view='cd $PAPER_PATH && evince paper.pdf & cd -'
 
 # Baxter
 alias baxter_shell="cd ~/catkin_ws && . baxter.sh && cd -"
+alias baxter_enable="rosrun baxter_tools enable_robot.py -e"
+alias baxter_disable="rosrun baxter_tools enable_robot.py -d"
 
 # ROS Staff
 EDITOR=geany
