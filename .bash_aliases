@@ -25,6 +25,20 @@ fi
 
 PS1="${PSCol}\u@\h${RCol}:\w\$ "
 
+# pdf2png
+function pdf2png() {
+  CURRENTDIR=`pwd`;
+  FILES=$(find $CURRENTDIR -maxdepth 1 -type f -name '*.pdf')
+  for FILEPATH in $FILES
+  do
+    PDF=$(basename "$FILEPATH")
+    FILENAME="${PDF%.*}"
+    PNG=$FILENAME.png
+    echo "Converting $PDF ==> $PNG"
+    convert -density 200 -trim $PDF -quality 100 -sharpen 0x1.0 $PNG
+  done
+}
+
 # Custom Aliases
 alias up='cd ..'
 alias up2='up && up'
