@@ -60,7 +60,7 @@ function phd_log() {
 alias phd_build='cd $THESIS_PATH && scons -Q && cd -'
 
 # LaTeX paper
-PAPER_PATH=~/git/kinematics-journal
+PAPER_PATH=~/git/tro-2015
 function paper_labels() {
   find $PAPER_PATH \( -path $PAPER_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\label\{)(.*?)(?=\})'; }
 function paper_cites() {
