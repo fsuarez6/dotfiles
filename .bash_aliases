@@ -9,9 +9,9 @@ Cya='\[\e[0;36m\]'  # Cyan
 Whi='\[\e[0;37m\]'  # White
 
 PSCol="$Whi"
-if [ $HOSTNAME == 'kronos' ]; then
+if [ $HOSTNAME == 'thinkstation' ]; then
     PSCol="$Blu"
-elif [ $HOSTNAME == 'sonic' ]; then
+elif [ $HOSTNAME == 'zeus' ]; then
     PSCol="$Cya"
 elif [ $HOSTNAME == 'rosbox' ]; then
     PSCol="$Pur"
@@ -80,5 +80,5 @@ alias baxter_disable="rosrun baxter_tools enable_robot.py -d"
 # ROS Staff
 EDITOR=geany
 alias roscat="cd ~/catkin_ws && catkin_make && cd -"
-source ~/catkin_ws/devel/setup.bash
+#~ source ~/catkin_ws/devel/setup.bash
 #~ source ~/hr2_ws/devel/setup.bash
