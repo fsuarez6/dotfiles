@@ -77,8 +77,11 @@ alias baxter_shell="cd ~/catkin_ws && . baxter.sh && cd -"
 alias baxter_enable="rosrun baxter_tools enable_robot.py -e"
 alias baxter_disable="rosrun baxter_tools enable_robot.py -d"
 
+# Denso
+alias denso_home="roslaunch denso_manipulation move_home_position.launch"
+alias denso_rrt="roslaunch denso_control denso_rrt_controller.launch"
+
 # ROS Staff
 EDITOR=geany
 alias roscat="cd ~/catkin_ws && catkin_make && cd -"
-#~ source ~/catkin_ws/devel/setup.bash
-#~ source ~/hr2_ws/devel/setup.bash
+source ~/catkin_ws/devel/setup.bash
