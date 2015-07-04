@@ -1,4 +1,9 @@
 #!/bin/sh
-cp filetype_extensions.conf $HOME/.config/geany
-cp geany.conf $HOME/.config/geany
+
+# Geany configuration
+wget http://download.geany.org/contrib/tags/std.latex.tags
+mv std.latex.tags $HOME/.config/geany/tags
+cp -r geany $HOME/.config
+# bashrc
 cp .bash_aliases $HOME
+echo "Done!"

@@ -11,9 +11,9 @@ Whi='\[\e[0;37m\]'  # White
 PSCol="$Whi"
 if [ $HOSTNAME == 'thinkstation' ]; then
     PSCol="$Blu"
-elif [ $HOSTNAME == 'zeus' ]; then
+elif [ $HOSTNAME == 'ideapad' ]; then
     PSCol="$Cya"
-elif [ $HOSTNAME == 'rosbox' ]; then
+elif [ $HOSTNAME == 'pavilion' ]; then
     PSCol="$Pur"
 elif [ $HOSTTYPE == 'arm' ]; then
     PSCol="$Gre"                # For pi
@@ -60,17 +60,17 @@ function phd_log() {
 alias phd_build='cd $THESIS_PATH && scons -Q && cd -'
 
 # LaTeX paper
-PAPER_PATH=~/git/tro-2015
+PAPER_PATH=~/git/postdoc-tex
 function paper_labels() {
   find $PAPER_PATH \( -path $PAPER_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\label\{)(.*?)(?=\})'; }
 function paper_cites() {
   find $PAPER_PATH \( -path $PAPER_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\cite\{)(.*?)(?=\})'; }
 function paper_log() {
-  LOG_FILE=$PAPER_PATH/paper.log
+  LOG_FILE=$PAPER_PATH/main.log
   grep -rn 'LaTeX Warning:' $LOG_FILE;
   grep -rn '! ' $LOG_FILE; }
 alias paper_build='cd $PAPER_PATH && scons -Q && cd -'
-alias paper_view='cd $PAPER_PATH && evince paper.pdf & cd -'
+alias paper_view='cd $PAPER_PATH && evince main.pdf & cd -'
 
 # Baxter
 alias baxter_shell="cd ~/catkin_ws && . baxter.sh && cd -"
