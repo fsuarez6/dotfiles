@@ -79,7 +79,9 @@ alias baxter_disable="rosrun baxter_tools enable_robot.py -d"
 
 # Denso
 alias denso_home="roslaunch denso_manipulation move_home_position.launch"
-alias denso_rrt="roslaunch denso_control denso_rrt_controller.launch"
+#~ alias denso_rrt="roslaunch denso_control denso_rrt_controller.launch"
+alias denso_left_rrt="roslaunch denso_control denso_rrt_controller.launch robot_name:=left denso_address:=169.254.100.12 netft_address:=169.254.100.13"
+alias denso_right_rrt="roslaunch denso_control denso_rrt_controller.launch robot_name:=right denso_address:=169.254.100.22 netft_address:=169.254.100.23"
 
 # ROS Staff
 EDITOR=geany
