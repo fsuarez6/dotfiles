@@ -11,8 +11,10 @@ Whi='\[\e[0;37m\]'  # White
 PSCol="$Whi"
 if [ $HOSTNAME == 'thinkstation' ]; then
     PSCol="$Blu"
-elif [ $HOSTNAME == 'ideapad' ]; then
+elif [ $HOSTNAME == 'dellstation' ]; then
     PSCol="$Cya"
+elif [ $HOSTNAME == 'ideapad' ]; then
+    PSCol="$Yel"
 elif [ $HOSTNAME == 'pavilion' ]; then
     PSCol="$Pur"
 elif [ $HOSTTYPE == 'arm' ]; then
@@ -60,7 +62,7 @@ function phd_log() {
 alias phd_build='cd $THESIS_PATH && scons -Q && cd -'
 
 # LaTeX paper
-PAPER_PATH=~/git/postdoc-tex
+PAPER_PATH=~/git/cri/papers/manipulation
 function paper_labels() {
   find $PAPER_PATH \( -path $PAPER_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\label\{)(.*?)(?=\})'; }
 function paper_cites() {
@@ -87,5 +89,5 @@ alias denso_right_rrt_read="roslaunch denso_control denso_rrt_controller.launch 
 
 # ROS Staff
 EDITOR=geany
-alias roscat="cd ~/catkin_ws && catkin_make && cd -"
+alias roscat="cd ~/catkin_ws && catkin_make install && cd -"
 source ~/catkin_ws/devel/setup.bash
