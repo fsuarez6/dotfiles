@@ -1,5 +1,6 @@
 # Custom colors for ssh
 RCol='\[\e[0m\]'    # Text Reset
+Blk='\[\e[0;30m\]'  # Black
 Red='\[\e[0;31m\]'  # Red
 Gre='\[\e[0;32m\]'  # Green
 Yel='\[\e[0;33m\]'  # Yellow
@@ -17,6 +18,8 @@ elif [ $HOSTNAME == 'ideapad' ]; then
     PSCol="$Yel"
 elif [ $HOSTNAME == 'pavilion' ]; then
     PSCol="$Pur"
+elif [ $HOSTNAME == 'kratos' ]; then
+    PSCol="$Yel"
 elif [ $HOSTTYPE == 'arm' ]; then
     PSCol="$Gre"                # For pi
 elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
@@ -49,18 +52,6 @@ alias up4='up3 && up'
 alias cd_catkin='cd ~/catkin_ws/src'
 alias killgazebo="killall -9 gazebo & killall -9 gzserver  & killall -9 gzclient"
 
-# LaTeX Thesis
-THESIS_PATH=~/git/phd-thesis
-function phd_labels() {
-  find $THESIS_PATH \( -path $THESIS_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\label\{)(.*?)(?=\})'; }
-function phd_cites() {
-  find $THESIS_PATH \( -path $THESIS_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\cite\{)(.*?)(?=\})'; }
-function phd_log() {
-  LOG_FILE=$THESIS_PATH/thesis.log
-  grep -rn 'LaTeX Warning:' $LOG_FILE;
-  grep -rn '! ' $LOG_FILE; }
-alias phd_build='cd $THESIS_PATH && scons -Q && cd -'
-
 # LaTeX paper
 PAPER_PATH=~/git/cri/papers/manipulation
 function paper_labels() {
@@ -72,7 +63,7 @@ function paper_log() {
   grep -rn 'LaTeX Warning:' $LOG_FILE;
   grep -rn '! ' $LOG_FILE; }
 alias paper_build='cd $PAPER_PATH && scons -Q && cd -'
-alias paper_view='cd $PAPER_PATH && evince main.pdf & cd -'
+alias paper_view='cd $PAPER_PATH && evince main.pdf > /dev/null & cd - > /dev/null'
 
 # Baxter
 alias baxter_shell="cd ~/catkin_ws && . baxter.sh && cd -"
@@ -89,5 +80,5 @@ alias denso_right_rrt_read="roslaunch denso_control denso_rrt_controller.launch 
 
 # ROS Staff
 EDITOR=geany
-alias roscat="cd ~/catkin_ws && catkin_make install && cd -"
+alias roscat="cd ~/catkin_ws && catkin_make install && cd - > /dev/null"
 source ~/catkin_ws/devel/setup.bash
