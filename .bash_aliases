@@ -44,6 +44,20 @@ function pdf2png() {
   done
 }
 
+# add_transparency
+function alpha2png() {
+  CURRENTDIR=`pwd`;
+  FILES=$(find $CURRENTDIR -maxdepth 1 -type f -name '*.png')
+  for FILEPATH in $FILES
+  do
+    PNG=$(basename "$FILEPATH")
+    FILENAME="${PNG%.*}"
+    ALPHA=$FILENAME-alpha.png
+    echo "Converting BLACK ==> TRANSPARENT ($ALPHA)"
+    convert $PNG -transparent black $ALPHA
+  done
+}
+
 # Custom Aliases
 alias up='cd ..'
 alias up2='up && up'
