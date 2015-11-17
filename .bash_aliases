@@ -92,6 +92,7 @@ alias denso_left_rrt="roslaunch denso_control denso_rrt_controller.launch robot_
 alias denso_right_rrt="roslaunch denso_control denso_rrt_controller.launch robot_name:=right denso_address:=192.168.0.21 netft_address:=192.168.0.22"
 alias denso_left_rrt_read="roslaunch denso_control denso_rrt_controller.launch robot_name:=left motor_on:=False denso_address:=192.168.0.11 netft_address:=192.168.0.12"
 alias denso_right_rrt_read="roslaunch denso_control denso_rrt_controller.launch robot_name:=right motor_on:=False denso_address:=192.168.0.21 netft_address:=192.168.0.22"
+alias stopmongo="sudo service mongodb stop"
 
 # ROS Staff
 EDITOR=geany
