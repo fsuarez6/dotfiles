@@ -18,7 +18,7 @@ elif [ $HOSTNAME == 'ideapad' ]; then
     PSCol="$Yel"
 elif [ $HOSTNAME == 'pavilion' ]; then
     PSCol="$Pur"
-elif [ $HOSTNAME == 'kratos' ]; then
+elif [ $HOSTNAME == 'hp' ]; then
     PSCol="$Yel"
 elif [ $HOSTTYPE == 'arm' ]; then
     PSCol="$Gre"                # For pi
