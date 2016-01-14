@@ -18,14 +18,14 @@ elif [ $HOSTNAME == 'ideapad' ]; then
     PSCol="$Yel"
 elif [ $HOSTNAME == 'pavilion' ]; then
     PSCol="$Pur"
-elif [ $HOSTNAME == 'hp' ]; then
+elif [ $HOSTNAME == 'hp' ]; then                  # Research fellow room
     PSCol="$Yel"
-elif [ $HOSTTYPE == 'arm' ]; then
-    PSCol="$Gre"                # For pi
-elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
-    PSCol="$Red"                # For iOS
-elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
-    PSCol="$Whi"                # For Netbook
+elif [ $HOSTTYPE == 'arm' ]; then                 # Raspberry pi
+    PSCol="$Gre"
+elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then    # iOS
+    PSCol="$Red"
+elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then   # For Netbook
+    PSCol="$Whi"
 fi
 
 PS1="${PSCol}\u@\h${RCol}:\w\$ "
@@ -79,10 +79,8 @@ function paper_log() {
 alias paper_build='cd $PAPER_PATH && scons -Q && cd -'
 alias paper_view='cd $PAPER_PATH && evince main.pdf > /dev/null & cd - > /dev/null'
 
-# Baxter
-alias baxter_shell="cd ~/catkin_ws && . baxter.sh && cd -"
-alias baxter_enable="rosrun baxter_tools enable_robot.py -e"
-alias baxter_disable="rosrun baxter_tools enable_robot.py -d"
+# Jekyll
+source ~/.rvm/scripts/rvm
 
 # Denso
 alias denso_home="roslaunch denso_manipulation move_home_position.launch"
@@ -94,8 +92,14 @@ alias denso_left_rrt_read="roslaunch denso_control denso_rrt_controller.launch r
 alias denso_right_rrt_read="roslaunch denso_control denso_rrt_controller.launch robot_name:=right motor_on:=False denso_address:=192.168.0.21 netft_address:=192.168.0.22"
 alias stopmongo="sudo service mongodb stop"
 alias rosplan_rqt="rqt --standalone rosplan_rqt"
+alias ueyerestart="sudo /etc/init.d/ueyeethdrc force-stop && sudo /etc/init.d/ueyeethdrc start"
 
 # ROS Staff
 EDITOR=geany
-alias roscat="cd ~/catkin_ws && catkin_make install && cd - > /dev/null"
+function roscat()
+{
+  cd ~/catkin_ws    ;
+  catkin_make "$@"  ;
+  cd - > /dev/null  ;
+}
 source ~/catkin_ws/devel/setup.bash
