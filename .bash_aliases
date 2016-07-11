@@ -16,7 +16,7 @@ elif [ $HOSTNAME == 'dellstation' ]; then
     PSCol="$Cya"
 elif [ $HOSTNAME == 'ideapad' ]; then
     PSCol="$Yel"
-elif [ $HOSTNAME == 'probook' ]; then
+elif [ $HOSTNAME == 'zbook' ]; then
     PSCol="$Pur"
 elif [ $HOSTNAME == 'hp' ]; then                  # Research fellow room
     PSCol="$Yel"
@@ -80,7 +80,7 @@ alias paper_build='cd $PAPER_PATH && scons -Q && cd -'
 alias paper_view='cd $PAPER_PATH && evince main.pdf > /dev/null & cd - > /dev/null'
 
 # Jekyll
-# source ~/.rvm/scripts/rvm
+source ~/.rvm/scripts/rvm
 
 # Denso
 alias denso_home="roslaunch denso_manipulation move_home_position.launch"
@@ -103,3 +103,4 @@ function rosbuild()
   cd - > /dev/null  ;
 }
 source ~/catkin_ws/devel/setup.bash
+alias rqt_reset="rm ~/.config/ros.org/rqt_gui.ini"
