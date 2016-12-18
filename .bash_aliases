@@ -104,3 +104,4 @@ function rosbuild()
 }
 source ~/catkin_ws/devel/setup.bash
 alias rqt_reset="rm ~/.config/ros.org/rqt_gui.ini"
+export OSG_NOTIFY_LEVEL=WARN
