@@ -63,7 +63,6 @@ alias up='cd ..'
 alias up2='up && up'
 alias up3='up2 && up'
 alias up4='up3 && up'
-alias cd_catkin='cd ~/catkin_ws/src'
 alias killgazebo="killall -9 gazebo & killall -9 gzserver  & killall -9 gzclient"
 
 # LaTeX paper
@@ -94,14 +93,18 @@ alias stopmongo="sudo service mongodb stop"
 alias rosplan_rqt="rqt --standalone rosplan_rqt"
 alias ueyerestart="sudo /etc/init.d/ueyeethdrc force-stop && sudo /etc/init.d/ueyeethdrc start"
 
+ROS_WS_PATH=~/catkin_ws
+
 # ROS Staff
+alias cd_catkin='cd $ROS_WS_PATH/src'
 EDITOR=geany
 function rosbuild()
 {
-  cd ~/catkin_ws    ;
+  cd $ROS_WS_PATH   ;
   catkin_make "$@"  ;
   cd - > /dev/null  ;
 }
-source ~/catkin_ws/devel/setup.bash
 alias rqt_reset="rm ~/.config/ros.org/rqt_gui.ini"
 export OSG_NOTIFY_LEVEL=WARN
+
+source $ROS_WS_PATH/devel/setup.bash
