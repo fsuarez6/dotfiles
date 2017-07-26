@@ -14,7 +14,7 @@ if [ $HOSTNAME == 'thinkstation' ]; then
     PSCol="$Blu"
 elif [ $HOSTNAME == 'dellstation' ]; then
     PSCol="$Cya"
-elif [ $HOSTNAME == 'ideapad' ]; then
+elif [ $HOSTNAME == 'rogsus' ]; then
     PSCol="$Yel"
 elif [ $HOSTNAME == 'zbook' ]; then
     PSCol="$Pur"
