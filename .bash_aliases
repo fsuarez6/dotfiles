@@ -97,7 +97,7 @@ ROS_WS_PATH=~/catkin_ws
 
 # ROS Staff
 alias cd_catkin='cd $ROS_WS_PATH/src'
-EDITOR=geany
+EDITOR=atom
 function rosbuild()
 {
   cd $ROS_WS_PATH   ;
@@ -108,3 +108,9 @@ alias rqt_reset="rm ~/.config/ros.org/rqt_gui.ini"
 export OSG_NOTIFY_LEVEL=WARN
 
 source $ROS_WS_PATH/devel/setup.bash
+
+# Gurobi
+export GUROBI_HOME="/opt/gurobi751/linux64"
+export PATH="${PATH}:${GUROBI_HOME}/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+export GRB_LICENSE_FILE="${GUROBI_HOME}/gurobi.lic"
