@@ -109,8 +109,15 @@ export OSG_NOTIFY_LEVEL=WARN
 
 source $ROS_WS_PATH/devel/setup.bash
 
+# Gitbook
+export PATH=$PATH:$HOME/.npm_modules/bin
+
 # Gurobi
 export GUROBI_HOME="/opt/gurobi751/linux64"
 export PATH="${PATH}:${GUROBI_HOME}/bin"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
 export GRB_LICENSE_FILE="${GUROBI_HOME}/gurobi.lic"
+# SCIP Optimization Suite
+export SCIPOPTDIR=/opt/scip-4.0.0
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${SCIPOPTDIR}/lib"
+export PATH="${PATH}:${UNIX_SCIP_DIR}/bin"
