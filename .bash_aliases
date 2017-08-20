@@ -110,7 +110,11 @@ export OSG_NOTIFY_LEVEL=WARN
 source $ROS_WS_PATH/devel/setup.bash
 
 # Gitbook
-export PATH=$PATH:$HOME/.npm_modules/bin
+NPM_PACKAGES="~/.npm_packages"
+PATH="$NPM_PACKAGES/bin:$PATH"
+# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
+unset MANPATH # delete if you already modified MANPATH elsewhere in your config
+export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 # Gurobi
 export GUROBI_HOME="/opt/gurobi751/linux64"
