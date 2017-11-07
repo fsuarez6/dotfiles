@@ -66,7 +66,7 @@ alias up4='up3 && up'
 alias killgazebo="killall -9 gazebo & killall -9 gzserver  & killall -9 gzclient"
 
 # LaTeX paper
-PAPER_PATH=~/git/cri/papers/manipulation
+PAPER_PATH=~/git/rtsp
 function paper_labels() {
   find $PAPER_PATH \( -path $PAPER_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\label\{)(.*?)(?=\})'; }
 function paper_cites() {
@@ -106,8 +106,12 @@ function rosbuild()
 }
 alias rqt_reset="rm ~/.config/ros.org/rqt_gui.ini"
 export OSG_NOTIFY_LEVEL=WARN
-
-source $ROS_WS_PATH/devel/setup.bash
+# Source
+if [ -f $ROS_WS_PATH/devel/setup.bash ]; then
+  source $ROS_WS_PATH/devel/setup.bash
+elif [ -f /opt/ros/kinetic/setup.bash ]; then
+  source /opt/ros/kinetic/setup.bash
+fi
 
 # Gitbook
 NPM_PACKAGES="~/.npm_packages"
