@@ -105,7 +105,14 @@ function rosbuild()
   cd - > /dev/null  ;
 }
 alias rqt_reset="rm ~/.config/ros.org/rqt_gui.ini"
+function rosdep_check()
+{
+  cd $ROS_WS_PATH/src ;
+  rosdep check --from-paths . --ignore-src --rosdistro $ROS_DISTRO ;
+  cd - > /dev/null ;
+}
 export OSG_NOTIFY_LEVEL=WARN
+
 # Source
 if [ -f $ROS_WS_PATH/devel/setup.bash ]; then
   source $ROS_WS_PATH/devel/setup.bash
