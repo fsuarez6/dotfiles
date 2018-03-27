@@ -15,7 +15,7 @@ if [ $HOSTNAME == 'thinkstation' ]; then
 elif [ $HOSTNAME == 'dellstation' ]; then
     PSCol="$Cya"
 elif [ $HOSTNAME == 'rogsus' ]; then
-    PSCol="$Yel"
+    PSCol="$Gre"
 elif [ $HOSTNAME == 'zbook' ]; then
     PSCol="$Pur"
 elif [ $HOSTNAME == 'hp' ]; then                  # Research fellow room
@@ -53,8 +53,8 @@ function alpha2png() {
     PNG=$(basename "$FILEPATH")
     FILENAME="${PNG%.*}"
     ALPHA=$FILENAME-alpha.png
-    echo "Converting BLACK ==> TRANSPARENT ($ALPHA)"
-    convert $PNG -transparent black $ALPHA
+    echo "Converting WHITE ==> TRANSPARENT ($ALPHA)"
+    convert $PNG -transparent white $ALPHA
   done
 }
 
@@ -66,7 +66,7 @@ alias up4='up3 && up'
 alias killgazebo="killall -9 gazebo & killall -9 gzserver  & killall -9 gzclient"
 
 # LaTeX paper
-PAPER_PATH=~/git/rtsp
+PAPER_PATH=~/git/iros_calib_2018
 function paper_labels() {
   find $PAPER_PATH \( -path $PAPER_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\label\{)(.*?)(?=\})'; }
 function paper_cites() {
@@ -81,16 +81,7 @@ alias paper_view='cd $PAPER_PATH && evince main.pdf > /dev/null & cd - > /dev/nu
 # Jekyll
 source ~/.rvm/scripts/rvm
 
-# Denso
-alias denso_home="roslaunch denso_manipulation move_home_position.launch"
-alias denso_fake_left="roslaunch denso_control denso_fake_controller.launch robot_name:=left"
-alias denso_fake_right="roslaunch denso_control denso_fake_controller.launch robot_name:=right"
-alias denso_left_rrt="roslaunch denso_control denso_rrt_controller.launch robot_name:=left denso_address:=192.168.0.11 netft_address:=192.168.0.12"
-alias denso_right_rrt="roslaunch denso_control denso_rrt_controller.launch robot_name:=right denso_address:=192.168.0.21 netft_address:=192.168.0.22"
-alias denso_left_rrt_read="roslaunch denso_control denso_rrt_controller.launch robot_name:=left motor_on:=False denso_address:=192.168.0.11 netft_address:=192.168.0.12"
-alias denso_right_rrt_read="roslaunch denso_control denso_rrt_controller.launch robot_name:=right motor_on:=False denso_address:=192.168.0.21 netft_address:=192.168.0.22"
-alias stopmongo="sudo service mongodb stop"
-alias rosplan_rqt="rqt --standalone rosplan_rqt"
+# Ensenso
 alias ueyerestart="sudo /etc/init.d/ueyeethdrc force-stop && sudo /etc/init.d/ueyeethdrc start"
 
 ROS_WS_PATH=~/catkin_ws
