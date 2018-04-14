@@ -84,7 +84,25 @@ source ~/.rvm/scripts/rvm
 # Ensenso
 alias ueyerestart="sudo /etc/init.d/ueyeethdrc force-stop && sudo /etc/init.d/ueyeethdrc start"
 
-ROS_WS_PATH=~/catkin_ws
+# Gitbook
+NPM_PACKAGES="~/.npm_packages"
+PATH="$NPM_PACKAGES/bin:$PATH"
+# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
+unset MANPATH # delete if you already modified MANPATH elsewhere in your config
+export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# Gurobi
+export GUROBI_HOME="/opt/gurobi751/linux64"
+export PATH="${PATH}:${GUROBI_HOME}/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+export GRB_LICENSE_FILE="${GUROBI_HOME}/gurobi.lic"
+# SCIP Optimization Suite
+export SCIPOPTDIR=/opt/scip-4.0.0
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${SCIPOPTDIR}/lib"
+export PATH="${PATH}:${UNIX_SCIP_DIR}/bin"
+
+ROS_WS_PATH=~/ws_lenny
+# ROS_WS_PATH=~/catkin_ws
 
 # ROS Staff
 alias cd_catkin='cd $ROS_WS_PATH/src'
@@ -110,20 +128,3 @@ if [ -f $ROS_WS_PATH/devel/setup.bash ]; then
 elif [ -f /opt/ros/kinetic/setup.bash ]; then
   source /opt/ros/kinetic/setup.bash
 fi
-
-# Gitbook
-NPM_PACKAGES="~/.npm_packages"
-PATH="$NPM_PACKAGES/bin:$PATH"
-# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
-unset MANPATH # delete if you already modified MANPATH elsewhere in your config
-export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-
-# Gurobi
-export GUROBI_HOME="/opt/gurobi751/linux64"
-export PATH="${PATH}:${GUROBI_HOME}/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
-export GRB_LICENSE_FILE="${GUROBI_HOME}/gurobi.lic"
-# SCIP Optimization Suite
-export SCIPOPTDIR=/opt/scip-4.0.0
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${SCIPOPTDIR}/lib"
-export PATH="${PATH}:${UNIX_SCIP_DIR}/bin"
