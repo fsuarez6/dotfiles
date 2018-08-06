@@ -1,0 +1,41 @@
+"*":
+  core:
+    customFileTypes:
+      "text.tex.latex": [
+        "pdf_tex"
+        "pgs"
+      ]
+    disabledPackages: [
+      "language-gfm"
+    ]
+    telemetryConsent: "limited"
+  editor:
+    showIndentGuide: true
+    showInvisibles: true
+    softWrap: true
+    tabType: "soft"
+  "exception-reporting":
+    userId: "d55ad73e-5aa8-4565-aeaf-574e7d16be48"
+  "file-watcher":
+    promptWhenChange: true
+  "pdf-view":
+    fitToWidthOnOpen: true
+  "spell-check":
+    grammars: [
+      "source.asciidoc"
+      "source.gfm"
+      "text.git-commit"
+      "text.md"
+      "text.plain"
+      "text.plain.null-grammar"
+      "text.tex.latex"
+    ]
+    locales: [
+      "en-US"
+    ]
+  "tree-view": {}
+  welcome:
+    showOnStartup: false
+".python.source":
+  editor:
+    tabLength: 2

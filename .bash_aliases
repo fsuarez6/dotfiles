@@ -18,7 +18,7 @@ elif [ $HOSTNAME == 'rogsus' ]; then
     PSCol="$Gre"
 elif [ $HOSTNAME == 'zbook' ]; then
     PSCol="$Pur"
-elif [ $HOSTNAME == 'hp' ]; then                  # Research fellow room
+elif [ $HOSTNAME == 'ideapad' ]; then             # Personal netbook
     PSCol="$Yel"
 elif [ $HOSTTYPE == 'arm' ]; then                 # Raspberry pi
     PSCol="$Gre"
@@ -66,7 +66,7 @@ alias up4='up3 && up'
 alias killgazebo="killall -9 gazebo & killall -9 gzserver  & killall -9 gzclient"
 
 # LaTeX paper
-PAPER_PATH=~/git/iros_calib_2018
+PAPER_PATH=~/git/tase_2018
 function paper_labels() {
   find $PAPER_PATH \( -path $PAPER_PATH/doc -prune -o -name '*.tex' \) | sort | xargs grep --color -oPnH '(?<=\\label\{)(.*?)(?=\})'; }
 function paper_cites() {
@@ -79,7 +79,9 @@ alias paper_build='cd $PAPER_PATH && scons -Q && cd -'
 alias paper_view='cd $PAPER_PATH && evince main.pdf > /dev/null & cd - > /dev/null'
 
 # Jekyll
-source ~/.rvm/scripts/rvm
+if [ -f ~/.rvm/scripts/rvm ]; then
+  source ~/.rvm/scripts/rvm
+fi
 
 # Ensenso
 alias ueyerestart="sudo /etc/init.d/ueyeethdrc force-stop && sudo /etc/init.d/ueyeethdrc start"
@@ -91,18 +93,19 @@ PATH="$NPM_PACKAGES/bin:$PATH"
 unset MANPATH # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
-# Gurobi
-export GUROBI_HOME="/opt/gurobi751/linux64"
-export PATH="${PATH}:${GUROBI_HOME}/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
-export GRB_LICENSE_FILE="${GUROBI_HOME}/gurobi.lic"
-# SCIP Optimization Suite
-export SCIPOPTDIR=/opt/scip-4.0.0
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${SCIPOPTDIR}/lib"
-export PATH="${PATH}:${UNIX_SCIP_DIR}/bin"
+# # Gurobi
+# export GUROBI_HOME="/opt/gurobi751/linux64"
+# export PATH="${PATH}:${GUROBI_HOME}/bin"
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+# export GRB_LICENSE_FILE="${GUROBI_HOME}/gurobi.lic"
+# # SCIP Optimization Suite
+# export SCIPOPTDIR=/opt/scip-4.0.0
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${SCIPOPTDIR}/lib"
+# export PATH="${PATH}:${UNIX_SCIP_DIR}/bin"
 
-ROS_WS_PATH=~/ws_lenny
-# ROS_WS_PATH=~/catkin_ws
+# ROS_WS_PATH=~/ws_lenny
+ROS_WS_PATH=~/catkin_ws
+# ROS_WS_PATH=~/ws_osrobotics
 
 # ROS Staff
 alias cd_catkin='cd $ROS_WS_PATH/src'
@@ -122,7 +125,28 @@ function rosdep_check()
 }
 export OSG_NOTIFY_LEVEL=WARN
 
-# Source
+# retro-contest
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+export DOCKER_REGISTRY="retrocontestapqlnovcmrexyfsw.azurecr.io"
+export WORKON_HOME=~/.virtualenvs
+source ~/.local/bin/virtualenvwrapper.sh
+function retro-build()
+{
+  cd $DOCKER_PATH   ;
+  docker build -f $DOCKER_FILE -t $DOCKER_REGISTRY/$DOCKER_TAG .  ;
+  cd - > /dev/null  ;
+}
+
+function retro-test()
+{
+  retro-build   ;
+  retro-contest run --agent $DOCKER_REGISTRY/$DOCKER_TAG                      \
+    --results-dir results --no-nv --use-host-data --timestep-limit $TIMESTEPS \
+    SonicTheHedgehog-Genesis GreenHillZone.Act1 ;
+}
+
+# workon retro
+# Source ROS
 if [ -f $ROS_WS_PATH/devel/setup.bash ]; then
   source $ROS_WS_PATH/devel/setup.bash
 elif [ -f /opt/ros/kinetic/setup.bash ]; then

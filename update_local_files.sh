@@ -1,10 +1,22 @@
 #!/bin/sh
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-# Geany configuration
-cp -r geany $HOME/.config
-wget http://download.geany.org/contrib/tags/std.latex.tags
-mv std.latex.tags $HOME/.config/geany/tags
-# bashrc
-rm -f $HOME/.bash_aliases
-ln -s $DIR/.bash_aliases $HOME/.bash_aliases
+BASEDIR=$(dirname "$0")
+
+# .bash_aliases
+DST=$HOME/.bash_aliases
+if [ -f $DST ] || [ -L $DST ]; then
+  rm $DST
+fi
+ln -s `realpath $BASEDIR/.bash_aliases` $DST
+
+# Atom
+CONFIG_FILES=$(find $BASEDIR/.atom -type f -name *.cson)
+for FILEPATH in $CONFIG_FILES; do
+  FILENAME=$(basename "$FILEPATH")
+  DST=$HOME/.atom/$FILENAME
+  if [ -f $DST ] || [ -L $DST ]; then
+    rm $DST
+  fi
+  ln -s `realpath $FILEPATH` $DST
+done
+
 echo "Done!"
